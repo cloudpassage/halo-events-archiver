@@ -1,33 +1,24 @@
-CloudPassage Halo Events Archiver
-=================================
-
-.. image:: https://codeclimate.com/github/cloudpassage/halo-events-archiver/badges/coverage.svg
-   :target: https://codeclimate.com/github/cloudpassage/halo-events-archiver/coverage
-   :alt: Test Coverage
+# CloudPassage Halo Events Archiver
 
 
-.. image:: https://codeclimate.com/github/cloudpassage/halo-events-archiver/badges/gpa.svg
-   :target: https://codeclimate.com/github/cloudpassage/halo-events-archiver
-   :alt: Code Climate
+[![Test Coverage](https://codeclimate.com/github/cloudpassage/halo-events-archiver/badges/coverage.svg)](https://codeclimate.com/github/cloudpassage/halo-events-archiver/coverage)
 
+[![Code Climate](https://codeclimate.com/github/cloudpassage/halo-events-archiver/badges/gpa.svg)](https://codeclimate.com/github/cloudpassage/halo-events-archiver)
 
-.. image:: https://codeclimate.com/github/cloudpassage/halo-events-archiver/badges/issue_count.svg
-   :target: https://codeclimate.com/github/cloudpassage/halo-events-archiver
-   :alt: Issue Count
+[![Issue Count](https://codeclimate.com/github/cloudpassage/halo-events-archiver/badges/issue_count.svg)](https://codeclimate.com/github/cloudpassage/halo-events-archiver)
 
-What it does
-------------
+## What it does
+
 
 Downloads one day's events from the Halo API.  10,000 events per file, gzipped.
 
-When would you use this sort of thing?
---------------------------------------
+## When would you use this sort of thing?
+
 
 If your compliance requirements bind you to a longer retention period than your
 Halo account provides, and you need to get your events into cold storage.
 
-How do use it
--------------
+## How do use it
 
 It's all bundled in a Docker container, so you just need to run it with the
 proper arguments.  Specifically, you'll need to pass in the API authentication
@@ -42,20 +33,21 @@ events stored in S3, define the AWS-oriented environment variables
 mounting in a directory for the retrieved events.  The S3 bucket must exist
 before running this tool.  It doesn't attempt to create one for you.
 
-Define the following environment variables:
+### Define the following environment variables:
 
 * HALO_API_KEY: sometimes referred to as Key ID
 * HALO_API_SECRET_KEY
 * TARGET_DATE: Formatted like this: "2016-12-01"
-* LOCAL_OUTPUT_DIR: absolute path to the directory you want your events to land in
-* AWS_S3_BUCKET: If this is defined, the tool will attempt to upload the gzipped files to S3.  If this is set and you don't pass in AWS API credentials, it will fail.
+* LOCAL_OUTPUT_DIR: absolute path to the directory you want your events to land
+in
+* AWS_S3_BUCKET: If this is defined, the tool will attempt to upload the
+gzipped files to S3.  If this is set and you don't pass in AWS API credentials,
+it will fail.
 * AWS_ACCESS_KEY_ID
 * AWS_SECRET_ACCESS_KEY
 
-Run it like this for local storage:
+### Run it like this for local storage:
 
-
-::
 
         docker run -it --rm \
             -e HALO_API_KEY=$HALO_API_KEY \
@@ -65,10 +57,9 @@ Run it like this for local storage:
             docker.io/halotools/halo-events-archiver
 
 
-And like this for S3 storage:
+### And like this for S3 storage:
 
 
-::
 
         docker run -it --rm \
             -e HALO_API_KEY=$HALO_API_KEY \
@@ -78,3 +69,9 @@ And like this for S3 storage:
             -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
             -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
             docker.io/halotools/halo-events-archiver
+
+
+<!---
+#CPTAGS:community-supported automation archive
+#TBICON:images/python_icon.png
+-->
