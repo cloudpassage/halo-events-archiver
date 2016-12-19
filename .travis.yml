@@ -1,0 +1,10 @@
+sudo: required
+language: python
+services:
+- docker
+script: docker build -t halo-events-archiver .
+after_script: docker run -it --rm halo-events-archiver /bin/sh -c "git checkout master;
+  codeclimate-test-reporter --token $CODECLIMATE_REPO_TOKEN --debug"
+env:
+  global:
+    secure: eyp2vZDQEZ6wZJm+xumFqengDlbzSgZywcbydhxSK96xgCWcr54e3x8Z/EwCbkobxEQRI17CXRXGx1MrjuyEvJ/pzbVWw6mbzeUSpULKwoQmFqeWHPAUQRZq9ifS7UAj53M0lQc3Vots6DARCTjglIXEDcrHHO81YD58EWxvoAdMlhhRV9eWoE+TlkzWgCUDaxVlZ38ouYkFxrh2Cux8zQ2sc8ngUplSEG5kiYC/QyxeH3KIguqWBA0fHXV8xlqUeuZhpML1EcUWUqrYWPnM40cNhNL/nARN/VEknjGkau5lPqfUmw5ZBBndh+oZaN+FtpE2bqDOyZz1530/JY+R0mG+rj/ZieLy0iRxevxlW2HWKFQJPp0oInt0lp9fwJ+I2eV74VAC8aEPbZEkCniV1EjFhMwP9ebi27u3yc7gamoC/0oC94mX2c279nivNJhp6S1fLLOjHD05SXln0D2fBUSn7QrKpBlW92wIVCisM1zAf9aO2x+QD1GE3xCFFIF8vRIiraqjkm7zHq0RAROzgq93/G8JOXbYcOc6QEQGFBq4t1ytRutOUW6dTkEZg03Jp2ILEU9X52/OT5J/07nqh6zwYNJiAf3OWDfHYjtmfdSbzOsKuTNM8QyNxQ5KP0jaqa2XTodYjTP8+dBYoJGRtZHov3EHl1v0+ErPBPjolCU=
