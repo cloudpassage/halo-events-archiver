@@ -1,6 +1,20 @@
 CloudPassage Halo Events Archiver
 =================================
 
+.. image:: https://codeclimate.com/github/cloudpassage/halo-events-archiver/badges/coverage.svg
+   :target: https://codeclimate.com/github/cloudpassage/halo-events-archiver/coverage
+   :alt: Test Coverage
+
+
+.. image:: https://codeclimate.com/github/cloudpassage/halo-events-archiver/badges/gpa.svg
+   :target: https://codeclimate.com/github/cloudpassage/halo-events-archiver
+   :alt: Code Climate
+
+
+.. image:: https://codeclimate.com/github/cloudpassage/halo-events-archiver/badges/issue_count.svg
+   :target: https://codeclimate.com/github/cloudpassage/halo-events-archiver
+   :alt: Issue Count
+
 What it does
 ------------
 
@@ -48,7 +62,7 @@ Run it like this for local storage:
             -e HALO_API_SECRET_KEY=$HALO_API_SECRET_KEY \
             -e TARGET_DATE=$TARGET_DATE \
             -v $LOCAL_OUTPUT_DIR:/var/events \
-            docker.io/halotools/events-batch-retrieval
+            docker.io/halotools/halo-events-archiver
 
 
 And like this for S3 storage:
@@ -63,4 +77,4 @@ And like this for S3 storage:
             -e AWS_S3_BUCKET=$AWS_S3_BUCKET \
             -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
             -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
-            docker.io/halotools/events-batch-retrieval
+            docker.io/halotools/halo-events-archiver
