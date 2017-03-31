@@ -2,7 +2,7 @@ FROM alpine:3.4
 MAINTAINER toolbox@cloudpassage.com
 
 ENV HALO_EVENTS_GIT=https://github.com/cloudpassage/halo-events
-ENV HALO_EVENTS_VERSION=v0.10.2
+ENV HALO_EVENTS_VERSION=v0.10.4
 
 ENV HALO_API_HOSTNAME=api.cloudpassage.com
 ENV HALO_API_PORT=443
