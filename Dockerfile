@@ -45,7 +45,7 @@ RUN pip install \
     pytest-cover==3.0.0 \
     pytest-flake8==0.1
 
-RUN py.test --cov=eventslib
+RUN py.test --cov=eventslib || py.test
 
 RUN mkdir -p $DROP_DIRECTORY
 
