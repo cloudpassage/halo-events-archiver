@@ -1,27 +1,38 @@
-FROM alpine:3.4
-MAINTAINER toolbox@cloudpassage.com
+# Get the halo-events component
+FROM docker.io/halotools/python-sdk:ubuntu-16.04_sdk-1.0.6 as downloader
 
-ENV HALO_EVENTS_GIT=https://github.com/cloudpassage/halo-events
-ENV HALO_EVENTS_VERSION=v0.10.4
+ARG HALO_EVENTS_VERSION=v0.10.4
+
+RUN apt-get update && \
+    apt-get install -y \
+        git
+
+WORKDIR /app/
+
+RUN echo "Target branch for this build: $HALO_EVENTS_VERSION"
+
+RUN git clone https://github.com/cloudpassage/halo-events
+
+RUN cd halo-events && \
+    git archive --verbose --format=tar.gz -o /app/haloevents.tar.gz $HALO_EVENTS_VERSION
+
+
+################################################################
+FROM docker.io/halotools/python-sdk:ubuntu-16.04_sdk-1.0.6
+MAINTAINER toolbox@cloudpassage.com
 
 ENV HALO_API_HOSTNAME=api.cloudpassage.com
 ENV HALO_API_PORT=443
 
 ENV DROP_DIRECTORY=/var/events
 
-RUN apk add --no-cache \
-    git=2.8.3-r0 \
-    python=2.7.12-r0 \
-    py-pip=8.1.2-r0
-
 RUN mkdir /app
 COPY ./ /app/
 
-RUN mkdir /src/
-WORKDIR /src/
-RUN git clone ${HALO_EVENTS_GIT}
+RUN mkdir -p /src/halo-events
 WORKDIR /src/halo-events
-RUN git checkout ${HALO_EVENTS_VERSION}
+COPY --from=downloader /app/haloevents.tar.gz /src/halo-events/haloevents.tar.gz
+RUN tar -zxvf ./haloevents.tar.gz
 RUN pip install .
 
 WORKDIR /app/tool/
