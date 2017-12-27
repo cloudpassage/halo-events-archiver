@@ -38,7 +38,7 @@ RUN pip install .
 WORKDIR /app/tool/
 
 RUN pip install \
-    boto3==1.4.2 \
+    boto3==1.5.6 \
     codeclimate-test-reporter==0.2.0 \
     coverage==4.2 \
     pytest==2.8.0 \
