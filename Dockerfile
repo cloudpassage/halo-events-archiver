@@ -1,7 +1,7 @@
 # Get the halo-events component
-FROM docker.io/halotools/python-sdk:ubuntu-16.04_sdk-1.0.6 as downloader
+FROM docker.io/halotools/python-sdk:ubuntu-16.04_sdk-1.1.1 as downloader
 
-ARG HALO_EVENTS_VERSION=v0.10.4
+ARG HALO_EVENTS_VERSION=v0.11
 
 RUN apt-get update && \
     apt-get install -y \
@@ -18,7 +18,7 @@ RUN cd halo-events && \
 
 
 ################################################################
-FROM docker.io/halotools/python-sdk:ubuntu-16.04_sdk-1.0.6
+FROM docker.io/halotools/python-sdk:ubuntu-16.04_sdk-1.1.1
 MAINTAINER toolbox@cloudpassage.com
 
 ENV HALO_API_HOSTNAME=api.cloudpassage.com
