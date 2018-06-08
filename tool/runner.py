@@ -1,19 +1,23 @@
 import cloudpassage
 import eventslib
 import os
+import sys
 import time
 from datetime import datetime
 
 config = cloudpassage.ApiKeyManager()
-env_date = os.getenv("TARGET_DATE")
+env_date = os.getenv("TARGET_DATE",
+                     eventslib.Utility.iso8601_arbitrary_days_ago(1))
 output_dir = os.getenv("DROP_DIRECTORY")
 events_per_file = 10000
 start_time = datetime.now()
 s3_bucket_name = os.getenv("AWS_S3_BUCKET")
 file_number = 0
 counter = 0
+
 event_cache = eventslib.GetEvents(config.key_id, config.secret_key,
-                                  events_per_file, env_date)
+                                  config.api_hostname, events_per_file,
+                                  env_date)
 
 if eventslib.Utility.target_date_is_valid(env_date) is False:
     msg = "Bad date! %s" % env_date

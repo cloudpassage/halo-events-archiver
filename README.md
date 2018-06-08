@@ -39,7 +39,9 @@ S3 bucket you need to drop the events into.
 
 * HALO_API_KEY: sometimes referred to as Key ID
 * HALO_API_SECRET_KEY
-* TARGET_DATE: Formatted like this: "2016-12-01"
+* HALO_API_HOSTNAME (optional, defaults to `api.cloudpassage.com`)
+* TARGET_DATE: Date to export events for, in ISO 8601 format, like this:
+"2016-12-01" (optional, defaults to yesterday)
 * LOCAL_OUTPUT_DIR: absolute path to the directory you want your events to land
 in
 * AWS_S3_BUCKET: If this is defined, the tool will attempt to upload the
